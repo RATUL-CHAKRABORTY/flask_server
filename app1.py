@@ -8,13 +8,12 @@ CORS(app)
 
 # Store last interaction (TEMP storage)
 last_data = {
-    "query": "",
-    "response": ""
+    "query": ""
 }
 
 def call_langchain_agent(query):
     time.sleep(2)
-    return f"LangChain response for: {query}"
+    return f"You are told to : {query}"
 
 @app.route("/get-response", methods=["POST"])
 def get_response():
@@ -23,8 +22,7 @@ def get_response():
     response = call_langchain_agent(query)
 
     # save it
-    last_data["query"] = query
-    last_data["response"] = response
+    last_data["query"] = responce
 
     return jsonify({"response": response})
 
@@ -33,9 +31,8 @@ def home():
     return f"""
     <html>
       <body>
-        <h1>Last request from localhost</h1>
-        <p><b>Query:</b> {last_data['query']}</p>
-        <p><b>Response:</b> {last_data['response']}</p>
+        <h1>You are only listener here. !</h1>
+        <p><b>(-)</b> {last_data['query']}</p>
       </body>
     </html>
     """
