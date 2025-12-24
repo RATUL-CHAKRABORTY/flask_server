@@ -21,8 +21,8 @@ def get_response():
     query = data.get("query", "")
     response = call_langchain_agent(query)
 
-    # save it
-    last_data["query"] = responce
+    # ✅ FIXED LINE
+    last_data["query"] = response
 
     return jsonify({"response": response})
 
